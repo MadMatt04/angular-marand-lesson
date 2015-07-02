@@ -1,0 +1,26 @@
+{
+  "name": "angular-marand-lesson",
+  "version": "0.0.1",
+  "authors": [
+    "Matija Kejžar <matija.kejzar@marand.si>"
+  ],
+  "description": "Angular Marand Lesson",
+  "keywords": [
+    "angular",
+    "Marand",
+    "lesson"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.1",
+    "angular-route": "~1.4.1"
+  }
+}
