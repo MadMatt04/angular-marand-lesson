@@ -11,6 +11,10 @@ body {
     position: absolute;
 }
 
+.aml-slide {
+    text-align: center;
+}
+
 #aml-intro-title {
     margin-top: 75px;
     margin-bottom: 75px;
