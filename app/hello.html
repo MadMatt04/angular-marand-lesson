@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Marand Angular Presentation - Hello World</title>
+        
+        <script src="bower_components/angular/angular.js"></script>
+        
+        <script type="text/javascript" src="js/hello.js"></script>
+        
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="css/aml.css" type="text/css" />
+        <link rel="stylesheet" href="css/hello.css" type="text/css" />
+        
+    </head>
+    
+    <body ng-app="amlHelloApp">
+        <div id="aml-hello-ex" ng-controller="AmlHelloWorldAppController as helloCtrl" ng-style="style">
+            
+            <div id="aml-hello-ex-input1" class="aml-hello-ex-input">
+                <label for="name-field">Enter your name</label>
+                <input name="name-field" type="text" class="form-control" ng-model="name">
+            </div>
+            
+            <div id="aml-hello-ex-output">
+                <h1 class="aml-hello-title" ng-show="name">Hello, {{name}}!</h1>
+            </div>
+            
+            <div id="aml-hello-ex-input2" class="aml-hello-ex-input">
+                <label for="color-field">Choose background color</label>
+                <input name="color-field" type="text" class="form-control" ng-model="color">
+            </div>
+            
+        </div>
+    </body>
+    
+</html>

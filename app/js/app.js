@@ -23,10 +23,15 @@
                     controller: 'AmlTraController',
                     controllerAs: 'amlTraCtrl'
                 })
-                 .when('/spa', {
+                .when('/spa', {
                     templateUrl: 'views/img.html',
                     controller: 'AmlSpaController',
                     controllerAs: 'amlSpaCtrl'
+                })
+                .when('/hello', {
+                    templateUrl: 'views/iframe.html',
+                    controller: 'AmlHelloController',
+                    controllerAs: 'amlHelloCtrl'
                 })
                 .otherwise({
                     redirectTo: '/'
@@ -72,7 +77,7 @@
                     $location.path(n.next);
                 }
             },
-            
+
             back: function() {
                 var n = this._navObject;
                 var prevIndex = n.current - 1;
@@ -118,23 +123,25 @@
                 });
             }
         });
-        
+
         $scope.navigation = function(navObject) {
-            return AmlNavigator.navigation(navObject);    
+            return AmlNavigator.navigation(navObject);
         };
-        
+
         $scope.showNav = function(index) {
             var nav = AmlNavigator.navigation();
             if (index < nav.showing.length) {
                 return nav.showing[index];
             }
-            
+
             return false;
         }
     }]);
 
     amlApp.controller("AmlMainController", ["$scope", function($scope) {
-        $scope.navigation({next: "/whatis"});
+        $scope.navigation({
+            next: "/whatis"
+        });
 
 
     }]);
@@ -147,29 +154,41 @@
         });
 
     }]);
-    
+
     amlApp.controller("AmlTraController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/whatis",
             next: "/spa"
         });
-        
+
         $scope.img = "img/traditional-app.jpg";
         $scope.imgAlt = "Traditional App Image";
         $scope.slideTitle = "Traditional Web Application";
         $scope.imgCredit = "MSDN";
 
     }]);
-    
+
     amlApp.controller("AmlSpaController", ["$scope", function($scope) {
         $scope.navigation({
-            previous: "/tra"
+            previous: "/tra",
+            next: "/hello"
         });
-        
+
         $scope.img = "img/sp-app.jpg";
         $scope.imgAlt = "Single-page Application";
         $scope.slideTitle = "Single-page Application Image";
         $scope.imgCredit = "MSDN";
+
+    }]);
+
+    amlApp.controller("AmlHelloController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/spa",
+            points: 1
+        });
+        
+        $scope.slideTitle = "Hello World";
+        $scope.iframeSrc = "https://preview.c9.io/madmatt04/angular-marand-lesson/app/hello.html";
 
     }]);
 }(window.aml = window.aml || {}));
