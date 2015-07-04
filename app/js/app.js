@@ -18,6 +18,16 @@
                     controller: 'AmlWhatIsController',
                     controllerAs: 'amlWhatIsCtrl'
                 })
+                .when('/tra', {
+                    templateUrl: 'views/img.html',
+                    controller: 'AmlTraController',
+                    controllerAs: 'amlTraCtrl'
+                })
+                 .when('/spa', {
+                    templateUrl: 'views/img.html',
+                    controller: 'AmlSpaController',
+                    controllerAs: 'amlSpaCtrl'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -26,68 +36,72 @@
 
     amlApp.factory("AmlNavigator", ["$location", function($location) {
         return {
-            actions: [],
-            current: null,
-            handledNavigations: [],
+            _navObject: null,
+            navigation: function(navObject) {
+                if (angular.isDefined(navObject)) {
 
-            add: function(action, current) {
-                this.actions.push(action);
-                if (current) {
-                    this.current = this.actions.length - 1;
+                    var no = {
+                        next: navObject.next,
+                        previous: navObject.previous,
+                        showing: [],
+                        current: -1
+                    };
+
+                    var count = navObject.points;
+                    if (angular.isDefined(count) && count > 0) {
+                        for (var i = 0; i < count; i++) {
+                            no.showing.push(false);
+                        }
+                    }
+
+                    this._navObject = no;
                 }
-            },
 
-            addNavigationAction: function(path, current) {
-                if (!this.handledNavigations[path]) {
-                    this.add(function() {
-                        console.log("Navigation to", path);
-                        $location.path(path);
-                    }, current);
-                    this.handledNavigations[path] = true;
-                }
 
+                return this._navObject;
             },
 
             forward: function() {
-                var index = this.current + 1;
-                if (index < this.actions.length) {
-                    var action = this.actions[index];
-                    this.current = index;
-                    action.call();
+                var n = this._navObject;
+                var nextIndex = n.current + 1;
+                if (nextIndex >= 0 && nextIndex < n.showing.length) {
+                    n.showing[nextIndex] = true;
+                    n.current = nextIndex;
                 }
-
-                return this.current;
+                else if (nextIndex >= n.showing.length && n.next) {
+                    $location.path(n.next);
+                }
             },
-
+            
             back: function() {
-                var index = this.current - 1;
-                if (index >= 0) {
-                    var action = this.actions[index];
-                    this.current = index;
-                    action.call();
+                var n = this._navObject;
+                var prevIndex = n.current - 1;
+                if (prevIndex >= -1 && prevIndex < n.showing.length) {
+                    n.showing[n.current] = false;
+                    n.current = prevIndex;
                 }
-
-                return this.current;
+                else if (prevIndex < -1 && n.previous) {
+                    $location.path(n.previous);
+                }
             }
         };
     }]);
 
     amlApp.directive('keypressEvents', ["$document", "$rootScope",
-            function($document, $rootScope) {
-                return {
-                    restrict: 'A',
-                    link: function() {
-                        console.log('linked');
-                        $document.bind('keyup', function(e) {
-                            $rootScope.$broadcast('keyup', e, e.which);
-                        });
-                    }
+        function($document, $rootScope) {
+            return {
+                restrict: 'A',
+                link: function() {
+                    console.log('linked');
+                    $document.bind('keyup', function(e) {
+                        $rootScope.$broadcast('keyup', e, e.which);
+                    });
                 }
             }
-        ]
-    );
+        }
+    ]);
 
-    amlApp.controller("AmlParentController", ["$rootScope", "$location", "AmlNavigator", function($rootScope, $location, AmlNavigator) {
+    amlApp.controller("AmlParentController", ["$scope", "$rootScope", "AmlNavigator", function($scope, $rootScope, AmlNavigator) {
         console.log("parentController");
         $rootScope.$on("keyup", function($event, domEvent, key) {
             console.log("keypress", $event, domEvent, key);
@@ -96,23 +110,66 @@
                 $rootScope.$apply(function() {
                     AmlNavigator.forward();
                 });
-            } else if (key === 37) {
+
+            }
+            else if (key === 37) {
                 $rootScope.$apply(function() {
                     AmlNavigator.back();
                 });
             }
-        })
+        });
+        
+        $scope.navigation = function(navObject) {
+            return AmlNavigator.navigation(navObject);    
+        };
+        
+        $scope.showNav = function(index) {
+            var nav = AmlNavigator.navigation();
+            if (index < nav.showing.length) {
+                return nav.showing[index];
+            }
+            
+            return false;
+        }
     }]);
 
-    amlApp.controller("AmlMainController", ["AmlNavigator", function(AmlNavigator) {
-        console.log("Here we are");
-        AmlNavigator.addNavigationAction("/", true);
-        AmlNavigator.addNavigationAction("/whatis");
-        console.log("AmlNavigator", AmlNavigator, AmlNavigator.actions);
+    amlApp.controller("AmlMainController", ["$scope", function($scope) {
+        $scope.navigation({next: "/whatis"});
+
+
+    }]);
+
+    amlApp.controller("AmlWhatIsController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/",
+            next: "/tra",
+            points: 4
+        });
+
     }]);
     
-    amlApp.controller("AmlWhatIsController", ["AmlNavigator", function(AmlNavigator) {
-        console.log("WhatIs");
-       
+    amlApp.controller("AmlTraController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/whatis",
+            next: "/spa"
+        });
+        
+        $scope.img = "img/traditional-app.jpg";
+        $scope.imgAlt = "Traditional App Image";
+        $scope.slideTitle = "Traditional Web Application";
+        $scope.imgCredit = "MSDN";
+
+    }]);
+    
+    amlApp.controller("AmlSpaController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/tra"
+        });
+        
+        $scope.img = "img/sp-app.jpg";
+        $scope.imgAlt = "Single-page Application";
+        $scope.slideTitle = "Single-page Application Image";
+        $scope.imgCredit = "MSDN";
+
     }]);
 }(window.aml = window.aml || {}));
