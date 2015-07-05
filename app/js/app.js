@@ -53,6 +53,11 @@
                     controller: 'AmlHelloJsController',
                     controllerAs: 'amlHelloJsCtrl'
                 })
+                .when('/features', {
+                    templateUrl: 'views/features.html',
+                    controller: 'AmlFeaturesController',
+                    controllerAs: 'amlFeaturesCtrl'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -162,8 +167,6 @@
         $scope.navigation({
             next: "/whatis"
         });
-
-
     }]);
 
     amlApp.controller("AmlWhatIsController", ["$scope", function($scope) {
@@ -253,11 +256,20 @@
 
     amlApp.controller("AmlHelloJsController", ["$scope", function($scope) {
         $scope.navigation({
-            previous: "/hello-template"
+            previous: "/hello-template",
+            next: "/features"
         });
 
         $scope.slideTitle = "Hello World - The Javascript";
         $scope.codeUrl = "/js/hello.js";
+    }]);
+
+    amlApp.controller("AmlFeaturesController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/hello-js",
+            points: 3
+        });
+
     }]);
 
 }(window.aml = window.aml || {}));
