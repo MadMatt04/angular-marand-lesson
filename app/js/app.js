@@ -38,6 +38,11 @@
                     controller: 'AmlJqueryBindingController',
                     controllerAs: 'amlJqueryCtrl'
                 })
+                .when('/angular-bind', {
+                    templateUrl: 'views/code.html',
+                    controller: 'AmlAngularBindingController',
+                    controllerAs: 'amlAngularCtrl'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -208,30 +213,21 @@
 
     amlApp.controller("AmlJqueryBindingController", ["$scope", function($scope) {
         $scope.navigation({
-            previous: "/hello"
+            previous: "/hello",
+            next: "/angular-bind"
         });
 
         $scope.slideTitle = "JQuery Implementation";
         $scope.codeUrl = "/js/examples/jquery-ex.js";
     }]);
 
-    amlApp.directive('amlLoadCode', ["$http", "$rootScope",
-        function($http, $rootScope) {
-            return {
-                restrict: 'A',
-                scope: {
-                    path: "=amlLoadCode"
-                },
-                link: function($scope) {
-                    console.log('linked path', $scope.path);
-                    $http.get($scope.path).
-                        success(function(data, status, headers, config) {
-                            console.log("path", data, status, headers, config);
-                            $rootScope.$broadcast("amlCodeLoaded", data, status, headers, config);
+    amlApp.controller("AmlAngularBindingController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/jquery"
+        });
 
-                        });
-                }
-            }
-        }
-    ]);
+        $scope.slideTitle = "The Angular Way (Declarative Bindings)";
+        $scope.codeUrl = "/views/examples/angular-binding.html";
+    }]);
+
 }(window.aml = window.aml || {}));

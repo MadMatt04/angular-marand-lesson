@@ -2,9 +2,8 @@
     <div class="aml-slide-inner center">
         <h1 class="aml-slide-title" ng-bind="slideTitle"></h1>
 
-        <div class="aml-code" aml-load-code="codeUrl">
-               <pre ng-controller="AmlCodeController">
-                <code hljs source="codeText" ></code></pre>
+        <div class="aml-code">
+                <pre><code hljs include="codeUrl" ></code></pre>
         </div>
 
     </div>
