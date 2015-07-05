@@ -1,5 +1,5 @@
 body {
-  font-family: Helvetica, Arial, Sans-Serif;
+    font-family: Helvetica, Arial, sans-serif;
   background-color: #ffffff;
 }
 
@@ -64,4 +64,8 @@ iframe.aml-iframe {
 #aml-intro-title {
     margin-top: 75px;
     margin-bottom: 75px;
+}
+
+.aml-code {
+    text-align: left;
 }

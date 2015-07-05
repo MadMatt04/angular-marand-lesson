@@ -1,6 +1,6 @@
 (function _namespace(aml) {
 
-    var amlApp = angular.module("amlApp", ["ngRoute"]);
+    var amlApp = angular.module("amlApp", ["ngRoute", "ngResource", "hljs"]);
     aml.app = amlApp;
 
     console.log("Loading");
@@ -32,6 +32,11 @@
                     templateUrl: 'views/iframe.html',
                     controller: 'AmlHelloController',
                     controllerAs: 'amlHelloCtrl'
+                })
+                .when('/jquery', {
+                    templateUrl: 'views/code.html',
+                    controller: 'AmlJqueryBindingController',
+                    controllerAs: 'amlJqueryCtrl'
                 })
                 .otherwise({
                     redirectTo: '/'
@@ -184,11 +189,49 @@
     amlApp.controller("AmlHelloController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/spa",
+            next: "/jquery",
             points: 1
         });
         
         $scope.slideTitle = "Hello World";
-        $scope.iframeSrc = "https://preview.c9.io/madmatt04/angular-marand-lesson/app/hello.html";
+        //$scope.iframeSrc = "https://preview.c9.io/madmatt04/angular-marand-lesson/app/hello.html";
+        $scope.iframeSrc = "http://localhost:8082/hello.html";
 
     }]);
+
+    amlApp.controller("AmlCodeController", ["$scope", function($scope) {
+        $scope.$on("amlCodeLoaded", function($event, data) {
+            console.log("data", data);
+            $scope.codeText = data;
+        });
+    }]);
+
+    amlApp.controller("AmlJqueryBindingController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/hello"
+        });
+
+        $scope.slideTitle = "JQuery Implementation";
+        $scope.codeUrl = "/js/examples/jquery-ex.js";
+    }]);
+
+    amlApp.directive('amlLoadCode', ["$http", "$rootScope",
+        function($http, $rootScope) {
+            return {
+                restrict: 'A',
+                scope: {
+                    path: "=amlLoadCode"
+                },
+                link: function($scope) {
+                    console.log('linked path', $scope.path);
+                    $http.get($scope.path).
+                        success(function(data, status, headers, config) {
+                            console.log("path", data, status, headers, config);
+                            $rootScope.$broadcast("amlCodeLoaded", data, status, headers, config);
+
+                        });
+                }
+            }
+        }
+    ]);
 }(window.aml = window.aml || {}));
