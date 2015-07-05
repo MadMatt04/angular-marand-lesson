@@ -43,6 +43,16 @@
                     controller: 'AmlAngularBindingController',
                     controllerAs: 'amlAngularCtrl'
                 })
+                .when('/hello-template', {
+                    templateUrl: 'views/code.html',
+                    controller: 'AmlHelloTemplateController',
+                    controllerAs: 'amlHelloTemplateCtrl'
+                })
+                .when('/hello-js', {
+                    templateUrl: 'views/code.html',
+                    controller: 'AmlHelloJsController',
+                    controllerAs: 'amlHelloJsCtrl'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -223,11 +233,31 @@
 
     amlApp.controller("AmlAngularBindingController", ["$scope", function($scope) {
         $scope.navigation({
-            previous: "/jquery"
+            previous: "/jquery",
+            next: "/hello-template"
         });
 
         $scope.slideTitle = "The Angular Way (Declarative Bindings)";
         $scope.codeUrl = "/views/examples/angular-binding.html";
+    }]);
+
+    amlApp.controller("AmlHelloTemplateController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/angular-bind",
+            next: "/hello-js"
+        });
+
+        $scope.slideTitle = "Hello World - Angular Template";
+        $scope.codeUrl = "/hello.html";
+    }]);
+
+    amlApp.controller("AmlHelloJsController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/hello-template"
+        });
+
+        $scope.slideTitle = "Hello World - The Javascript";
+        $scope.codeUrl = "/js/hello.js";
     }]);
 
 }(window.aml = window.aml || {}));
