@@ -63,6 +63,11 @@
                     controller: 'AmlFilterController',
                     controllerAs: 'amlFilterCtrl'
                 })
+                .when('/services', {
+                    templateUrl: 'views/services.html',
+                    controller: 'AmlServicesController',
+                    controllerAs: 'amlServiceCtrl'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -280,6 +285,14 @@
     amlApp.controller("AmlFilterController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/features",
+            next: "/services",
+            points: 5
+        });
+    }]);
+
+    amlApp.controller("AmlServicesController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/filters",
             points: 5
         });
     }]);

@@ -70,3 +70,7 @@ iframe.aml-iframe {
     text-align: left;
     font-size: large;
 }
+
+.aml-service-name {
+    text-decoration: underline;
+}
