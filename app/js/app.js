@@ -68,6 +68,18 @@
                     controller: 'AmlServicesController',
                     controllerAs: 'amlServiceCtrl'
                 })
+                .when('/angular2-1', {
+                    templateUrl: 'views/angular2-1.html',
+                    controller: 'AmlAngular2OneController'
+                })
+                .when('/angular2-2', {
+                    templateUrl: 'views/angular2-2.html',
+                    controller: 'AmlAngular2TwoController'
+                })
+                .when('/angular2-3', {
+                    templateUrl: 'views/angular2-3.html',
+                    controller: 'AmlAngular2ThreeController'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -293,7 +305,31 @@
     amlApp.controller("AmlServicesController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/filters",
+            next: "/angular2-1",
             points: 6
+        });
+    }]);
+
+    amlApp.controller("AmlAngular2OneController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/services",
+            next: "/angular2-2",
+            points: 6
+        });
+    }]);
+
+    amlApp.controller("AmlAngular2TwoController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/angular2-1",
+            next: "/angular2-3",
+            points: 5
+        });
+    }]);
+
+    amlApp.controller("AmlAngular2ThreeController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/angular2-2",
+            points: 4
         });
     }]);
 
