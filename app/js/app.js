@@ -293,7 +293,7 @@
     amlApp.controller("AmlServicesController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/filters",
-            points: 5
+            points: 6
         });
     }]);
 
