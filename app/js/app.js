@@ -58,6 +58,11 @@
                     controller: 'AmlFeaturesController',
                     controllerAs: 'amlFeaturesCtrl'
                 })
+                .when('/filters', {
+                    templateUrl: 'views/filters.html',
+                    controller: 'AmlFilterController',
+                    controllerAs: 'amlFilterCtrl'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -267,9 +272,16 @@
     amlApp.controller("AmlFeaturesController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/hello-js",
+            next: "filters",
             points: 3
         });
+    }]);
 
+    amlApp.controller("AmlFilterController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/features",
+            points: 5
+        });
     }]);
 
 }(window.aml = window.aml || {}));

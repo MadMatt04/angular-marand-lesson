@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Marand Angular Presentation - Filter</title>
+        
+        <script src="bower_components/angular/angular.js"></script>
+        
+        <script type="text/javascript" src="js/filter.js"></script>
+        
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="css/aml.css" type="text/css" />
+        <link rel="stylesheet" href="css/hello.css" type="text/css" />
+        
+    </head>
+    
+    <body ng-app="amlFilterApp">
+        <div id="aml-filter-ex" ng-controller="AmlFilterAppController as filterCtrl">
+            
+            <div id="aml-filter-ex-input1" class="aml-hello-ex-input">
+                <label for="time-field" style="font-size: 2em;">Enter time in milliseconds</label>
+                <input name="time-field" type="number" class="form-control" ng-model="timeInMs" min="0">
+            </div>
+            
+            <div id="aml-filter-ex-output">
+                <h1 ng-show="timeInMs">Date: {{timeInMs | date:'medium'}}</h1>
+            </div>
+            
+        </div>
+    </body>
+    
+</html>
