@@ -15,58 +15,51 @@
                 })
                 .when('/whatis', {
                     templateUrl: 'views/whatis.html',
-                    controller: 'AmlWhatIsController',
-                    controllerAs: 'amlWhatIsCtrl'
+                    controller: 'AmlWhatIsController'
                 })
                 .when('/tra', {
                     templateUrl: 'views/img.html',
-                    controller: 'AmlTraController',
-                    controllerAs: 'amlTraCtrl'
+                    controller: 'AmlTraController'
                 })
                 .when('/spa', {
                     templateUrl: 'views/img.html',
-                    controller: 'AmlSpaController',
-                    controllerAs: 'amlSpaCtrl'
+                    controller: 'AmlSpaController'
                 })
                 .when('/hello', {
                     templateUrl: 'views/iframe.html',
-                    controller: 'AmlHelloController',
-                    controllerAs: 'amlHelloCtrl'
+                    controller: 'AmlHelloController'
                 })
                 .when('/jquery', {
                     templateUrl: 'views/code.html',
-                    controller: 'AmlJqueryBindingController',
-                    controllerAs: 'amlJqueryCtrl'
+                    controller: 'AmlJqueryBindingController'
                 })
                 .when('/angular-bind', {
                     templateUrl: 'views/code.html',
-                    controller: 'AmlAngularBindingController',
-                    controllerAs: 'amlAngularCtrl'
+                    controller: 'AmlAngularBindingController'
                 })
                 .when('/hello-template', {
                     templateUrl: 'views/code.html',
-                    controller: 'AmlHelloTemplateController',
-                    controllerAs: 'amlHelloTemplateCtrl'
+                    controller: 'AmlHelloTemplateController'
                 })
                 .when('/hello-js', {
                     templateUrl: 'views/code.html',
-                    controller: 'AmlHelloJsController',
-                    controllerAs: 'amlHelloJsCtrl'
+                    controller: 'AmlHelloJsController'
                 })
                 .when('/features', {
                     templateUrl: 'views/features.html',
-                    controller: 'AmlFeaturesController',
-                    controllerAs: 'amlFeaturesCtrl'
+                    controller: 'AmlFeaturesController'
                 })
                 .when('/filters', {
                     templateUrl: 'views/filters.html',
-                    controller: 'AmlFilterController',
-                    controllerAs: 'amlFilterCtrl'
+                    controller: 'AmlFilterController'
+                })
+                .when('/directives', {
+                    templateUrl: 'views/directives.html',
+                    controller: 'AmlDirectivesController'
                 })
                 .when('/services', {
                     templateUrl: 'views/services.html',
-                    controller: 'AmlServicesController',
-                    controllerAs: 'amlServiceCtrl'
+                    controller: 'AmlServicesController'
                 })
                 .when('/angular2-1', {
                     templateUrl: 'views/angular2-1.html',
@@ -156,6 +149,23 @@
             }
         }
     ]);
+
+    amlApp.directive('phoneNumber', [function() {
+        return {
+            restrict: 'E',
+            templateUrl: '/views/directives/phone-number.html',
+            transclude: true,
+
+            scope: {
+                labelColor: '@'
+            },
+            link: function(scope, element) {
+                var labelElement = element.find("label");
+                labelElement.css({"color": scope.labelColor});
+            }
+
+        };
+    }]);
 
     amlApp.controller("AmlParentController", ["$scope", "$rootScope", "AmlNavigator", function($scope, $rootScope, AmlNavigator) {
         console.log("parentController");
@@ -301,6 +311,14 @@
     amlApp.controller("AmlFilterController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/features",
+            next: "/directives",
+            points: 5
+        });
+    }]);
+
+    amlApp.controller("AmlDirectivesController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/filters",
             next: "/services",
             points: 5
         });
@@ -308,7 +326,7 @@
 
     amlApp.controller("AmlServicesController", ["$scope", function($scope) {
         $scope.navigation({
-            previous: "/filters",
+            previous: "/directives",
             next: "/angular2-1",
             points: 6
         });

@@ -78,3 +78,13 @@ iframe.aml-iframe {
 .aml-huge-title {
     font-size: 5em;
 }
+
+.aml-phone {
+    font-size: 1em;
+    font-weight: normal;
+}
+
+.aml-phone .aml-phone-label {
+    font-weight: bold;
+    margin-right: 15px;
+}
