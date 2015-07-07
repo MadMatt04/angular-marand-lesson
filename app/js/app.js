@@ -108,8 +108,13 @@
                 return this._navObject;
             },
 
-            forward: function() {
+            forward: function(slide) {
                 var n = this._navObject;
+                if (slide === true && n && n.next) {
+                    $location.path(n.next);
+                    return;
+                }
+
                 var nextIndex = n.current + 1;
                 if (nextIndex >= 0 && nextIndex < n.showing.length) {
                     n.showing[nextIndex] = true;
@@ -120,8 +125,13 @@
                 }
             },
 
-            back: function() {
+            back: function(slide) {
                 var n = this._navObject;
+                if (slide === true && n && n.previous) {
+                    $location.path(n.previous);
+                    return;
+                }
+
                 var prevIndex = n.current - 1;
                 if (prevIndex >= -1 && prevIndex < n.showing.length) {
                     n.showing[n.current] = false;
@@ -168,15 +178,25 @@
 
         $rootScope.$on("keyup", function($event, domEvent, key) {
             console.log("keypress", $event, domEvent, key);
-            if (key === 39) {
+            if (key === 39) { // right arrow
                 $rootScope.$apply(function() {
                     AmlNavigator.forward();
                 });
 
             }
-            else if (key === 37) {
+            else if (key === 37) { // left arrow
                 $rootScope.$apply(function() {
                     AmlNavigator.back();
+                });
+            }
+            else if (key === 70) { // f
+                $rootScope.$apply(function() {
+                    AmlNavigator.forward(true);
+                });
+            }
+            else if (key === 68) { // d
+                $rootScope.$apply(function() {
+                    AmlNavigator.back(true);
                 });
             }
         });
