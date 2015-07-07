@@ -80,6 +80,10 @@
                     templateUrl: 'views/angular2-3.html',
                     controller: 'AmlAngular2ThreeController'
                 })
+                .when('/questions', {
+                    templateUrl: 'views/questions.html',
+                    controller: 'AmlQuestionsController'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -329,7 +333,14 @@
     amlApp.controller("AmlAngular2ThreeController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/angular2-2",
+            next: "/questions",
             points: 4
+        });
+    }]);
+
+    amlApp.controller("AmlQuestionsController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/angular2-3"
         });
     }]);
 

@@ -74,3 +74,7 @@ iframe.aml-iframe {
 .aml-service-name {
     text-decoration: underline;
 }
+
+.aml-huge-title {
+    font-size: 5em;
+}
