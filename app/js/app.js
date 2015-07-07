@@ -3,8 +3,6 @@
     var amlApp = angular.module("amlApp", ["ngRoute", "ngResource", "hljs"]);
     aml.app = amlApp;
 
-    console.log("Loading");
-
     amlApp.config(['$routeProvider',
         function($routeProvider) {
             $routeProvider
@@ -141,7 +139,6 @@
             return {
                 restrict: 'A',
                 link: function() {
-                    console.log('linked');
                     $document.bind('keyup', function(e) {
                         $rootScope.$broadcast('keyup', e, e.which);
                     });
@@ -168,11 +165,10 @@
     }]);
 
     amlApp.controller("AmlParentController", ["$scope", "$rootScope", "AmlNavigator", function($scope, $rootScope, AmlNavigator) {
-        console.log("parentController");
+
         $rootScope.$on("keyup", function($event, domEvent, key) {
             console.log("keypress", $event, domEvent, key);
             if (key === 39) {
-                console.log("39");
                 $rootScope.$apply(function() {
                     AmlNavigator.forward();
                 });
@@ -255,7 +251,6 @@
 
     amlApp.controller("AmlCodeController", ["$scope", function($scope) {
         $scope.$on("amlCodeLoaded", function($event, data) {
-            console.log("data", data);
             $scope.codeText = data;
         });
     }]);

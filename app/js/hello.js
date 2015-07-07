@@ -1,8 +1,6 @@
 (function _namespace(aml) {
 
     var helloApp = angular.module("amlHelloApp", []);
-
-    console.log("Aml hello app", helloApp);
     
      helloApp.controller("AmlHelloWorldAppController", ["$scope", function($scope) {
          $scope.style = {
