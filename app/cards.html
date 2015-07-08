@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Marand Angular Presentation - Cards Demo</title>
+        
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+
+        <script type="text/javascript" src="js/cards.js"></script>
+
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="css/aml-cards.css" type="text/css" />
+    </head>
+    <body ng-app="cardsApp" ng-controller="AmlCardsController as cardsCtrl">
+        <div id="aml-card-deck" class="aml-inline">
+            <aml-card flipped="true"></aml-card>
+            <button id="aml-shuffle-btn" class="form-control" ng-click="shuffle()" ng-bind="shuffleText">Shuffle</button>
+        </div>
+        <div class="aml-inline">
+            <aml-card class="aml-fade" ng-repeat="c in dealtCards" card="c.card" color="c.color" flipped="true"></aml-card>
+        </div>
+
+    </body>
+</html>

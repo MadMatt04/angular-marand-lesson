@@ -1,0 +1,49 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: lightblue;
+}
+
+aml-card {
+    margin-left: 6px;
+    margin-right: 6px;
+    display: inline-block;
+}
+
+.aml-inline {
+    display: inline-block;
+}
+
+#aml-shuffle-btn {
+    margin: 10px 6px auto 6px;
+    width: 200px;
+
+}
+
+.aml-fade
+{
+    opacity: 1;
+}
+
+.aml-fade.ng-enter {
+    transition:0.5s linear all;
+    opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.aml-fade.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
+.aml-rotate {
+    transition: transform 1s;
+}
+.aml-rotate.on-add {
+    background:darkgreen;
+}
+.aml-rotate.on {
+    background:yellow;
+    transform:rotateY(180deg);
+}
+.aml-rotate.on-remove {
+    background:black;
+}
