@@ -72,9 +72,9 @@
             link: function(scope, element) {
 
                 function _flippedCard() {
-                    scope.cardSrc = "img/cards/back_of_orange.png";
-                    scope.shownColor = "orange";
-                    scope.shownCard = "unknown";
+                    //scope.cardSrc = "img/cards/back_of_orange.png";
+                    //scope.shownColor = "orange";
+                    //scope.shownCard = "unknown";
                 }
 
                 function _faceUpCard() {
@@ -82,6 +82,9 @@
                     //scope.shownColor = scope.color;
                     //scope.shownCard = scope.card;
                 }
+
+                scope.cardSrc =  "img/cards/" + scope.card + "_of_" + scope.color + ".png";
+
 
                 scope.flipped = scope.flipped === "true";
 

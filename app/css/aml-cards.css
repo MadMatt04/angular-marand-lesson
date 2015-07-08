@@ -1,6 +1,7 @@
 body {
     font-family: Helvetica, Arial, sans-serif;
     background-color: lightblue;
+    margin: 20px;
 }
 
 aml-card {
@@ -35,7 +36,7 @@ aml-card {
 }
 
 .aml-rotate {
-    transition: transform 1s;
+    transition: transform 1s, opacity 0.5s;
 }
 .aml-rotate.on-add {
     background:darkgreen;
@@ -46,4 +47,31 @@ aml-card {
 }
 .aml-rotate.on-remove {
     background:black;
+}
+
+
+.aml-card-wrapper {
+    position: relative;
+    width: 200px;
+    height: 290px;
+}
+
+.aml-rotate.aml-card-img.front {
+    opacity: 0;
+}
+
+.aml-rotate.aml-card-img.front:not(.on) {
+    opacity: 0;
+}
+
+.aml-rotate.aml-card-img.back {
+    opacity: 1;
+}
+
+.aml-rotate.aml-card-img.front.on {
+    opacity: 1;
+}
+
+.aml-rotate.aml-card-img.back.on {
+    opacity: 0;
 }

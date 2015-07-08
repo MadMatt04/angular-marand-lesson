@@ -1,9 +1,23 @@
-<img
-        ng-src="{{cardSrc}}"
-        alt="Card image"
-        title="{{shownCard}} of {{shownColor}}"
-        width="200"
-        height="290"
-        ng-click="flip()"
-        class="aml-rotate"
-        ng-class="{on:onOff}">
+<div class="aml-card-wrapper">
+    <img
+            class="aml-rotate aml-card-img back"
+            style="position: absolute"
+            src="img/cards/back_of_orange.png"
+            alt="Back of card image"
+            title=""
+            width="200"
+            height="290"
+            ng-click="flip()"
+            class="aml-rotate"
+            ng-class="{on:onOff}">
+    <img
+            class="aml-rotate aml-card-img front"
+            style="position: absolute"
+            ng-src="{{cardSrc}}"
+            alt="Card image"
+            title="{{card}} of {{color}}"
+            width="200"
+            height="290"
+            ng-click="flip()"
+            ng-class="{on:onOff}">
+</div>
