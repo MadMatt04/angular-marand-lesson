@@ -269,7 +269,7 @@
         
         $scope.slideTitle = "Hello World";
         //$scope.iframeSrc = "https://preview.c9.io/madmatt04/angular-marand-lesson/app/hello.html";
-        $scope.iframeSrc = "/hello.html";
+        $scope.iframeSrc = "hello.html";
 
     }]);
 
@@ -286,7 +286,7 @@
         });
 
         $scope.slideTitle = "JQuery Implementation";
-        $scope.codeUrl = "/js/examples/jquery-ex.js";
+        $scope.codeUrl = "js/examples/jquery-ex.js";
     }]);
 
     amlApp.controller("AmlAngularBindingController", ["$scope", function($scope) {
@@ -306,7 +306,7 @@
         });
 
         $scope.slideTitle = "Hello World - Angular Template";
-        $scope.codeUrl = "/hello.html";
+        $scope.codeUrl = "hello.html";
     }]);
 
     amlApp.controller("AmlHelloJsController", ["$scope", function($scope) {
@@ -316,7 +316,7 @@
         });
 
         $scope.slideTitle = "Hello World - The Javascript";
-        $scope.codeUrl = "/js/hello.js";
+        $scope.codeUrl = "js/hello.js";
     }]);
 
     amlApp.controller("AmlFeaturesController", ["$scope", function($scope) {
@@ -359,7 +359,7 @@
         });
 
         $scope.slideTitle = "Animation Demo";
-        $scope.iframeSrc = "/cards.html";
+        $scope.iframeSrc = "cards.html";
     }]);
 
     amlApp.controller("AmlAngular2OneController", ["$scope", function($scope) {
