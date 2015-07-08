@@ -22,6 +22,10 @@ body {
     width: 75%;
 }
 
+.aml-slide-inner.full {
+    width: 98%;
+}
+
 .aml-slide-inner.center {
     display: inline-block;
     text-align: center;
@@ -87,4 +91,8 @@ iframe.aml-iframe {
 .aml-phone .aml-phone-label {
     font-weight: bold;
     margin-right: 15px;
+}
+
+#aml-attributions {
+    font-size: x-small;
 }

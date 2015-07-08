@@ -59,6 +59,10 @@
                     templateUrl: 'views/services.html',
                     controller: 'AmlServicesController'
                 })
+                .when('/animation', {
+                    templateUrl: 'views/iframe.html',
+                    controller: 'AmlAnimationDemoController'
+                })
                 .when('/angular2-1', {
                     templateUrl: 'views/angular2-1.html',
                     controller: 'AmlAngular2OneController'
@@ -265,7 +269,7 @@
         
         $scope.slideTitle = "Hello World";
         //$scope.iframeSrc = "https://preview.c9.io/madmatt04/angular-marand-lesson/app/hello.html";
-        $scope.iframeSrc = "http://localhost:8082/hello.html";
+        $scope.iframeSrc = "/hello.html";
 
     }]);
 
@@ -342,14 +346,25 @@
     amlApp.controller("AmlServicesController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/directives",
-            next: "/angular2-1",
+            next: "/animation",
             points: 6
         });
     }]);
 
-    amlApp.controller("AmlAngular2OneController", ["$scope", function($scope) {
+    amlApp.controller("AmlAnimationDemoController", ["$scope", function($scope) {
         $scope.navigation({
             previous: "/services",
+            next: "/angular2-1",
+            points: 1
+        });
+
+        $scope.slideTitle = "Animation Demo";
+        $scope.iframeSrc = "/cards.html";
+    }]);
+
+    amlApp.controller("AmlAngular2OneController", ["$scope", function($scope) {
+        $scope.navigation({
+            previous: "/animation",
             next: "/angular2-2",
             points: 6
         });
