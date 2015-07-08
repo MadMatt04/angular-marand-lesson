@@ -35,9 +35,9 @@
         $scope.shuffle = function() {
             var shuffled = !$scope.shuffled;
 
-            $scope.shuffleText = shuffled ? "Collect" : "Shuffle";
+            $scope.shuffleText = shuffled ? "Collect" : "Deal";
             $scope.lastCardInfo = {
-                index: null,
+                index: null
 
             };
 
@@ -71,39 +71,14 @@
             },
             link: function(scope, element) {
 
-                function _flippedCard() {
-                    //scope.cardSrc = "img/cards/back_of_orange.png";
-                    //scope.shownColor = "orange";
-                    //scope.shownCard = "unknown";
-                }
-
-                function _faceUpCard() {
-                    //scope.cardSrc =  "img/cards/" + scope.card + "_of_" + scope.color + ".png";
-                    //scope.shownColor = scope.color;
-                    //scope.shownCard = scope.card;
-                }
-
                 scope.cardSrc =  "img/cards/" + scope.card + "_of_" + scope.color + ".png";
 
 
                 scope.flipped = scope.flipped === "true";
 
-                if (scope.flipped) {
-                    _flippedCard();
-
-                } else {
-                    _faceUpCard();
-                }
 
                 scope.flip = function() {
-                    var flipped = !scope.flipped;
-                    if (flipped) {
-                        _flippedCard()
-                    } else {
-                        _faceUpCard();
-                    }
 
-                    scope.flipped = flipped;
                     scope.onOff = !scope.onOff;
                 };
 

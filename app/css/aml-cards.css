@@ -27,6 +27,7 @@ aml-card {
 
 .aml-fade.ng-enter {
     transition:0.5s linear all;
+    -webkit-transition:0.5s linear all;
     opacity:0;
 }
 
@@ -35,18 +36,41 @@ aml-card {
     opacity:1;
 }
 
-.aml-rotate {
-    transition: transform 1s, opacity 0.5s;
+
+.aml-rotate.front.on-add {
+    animation-name: fade-kf;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    -webkit-animation-name: fade-kf;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 1s;
 }
-.aml-rotate.on-add {
-    background:darkgreen;
+
+.aml-rotate.back.on-add {
+    animation-name: fade-kf2;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    -webkit-animation-name: fade-kf2;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 1s;
 }
-.aml-rotate.on {
-    background:yellow;
-    transform:rotateY(180deg);
+
+.aml-rotate.front.on-remove {
+    animation-name: fade-kf2;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    -webkit-animation-name: fade-kf2;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 1s;
 }
-.aml-rotate.on-remove {
-    background:black;
+
+.aml-rotate.back.on-remove {
+    animation-name: fade-kf;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    -webkit-animation-name: fade-kf;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-duration: 1s;
 }
 
 
@@ -60,10 +84,6 @@ aml-card {
     opacity: 0;
 }
 
-.aml-rotate.aml-card-img.front:not(.on) {
-    opacity: 0;
-}
-
 .aml-rotate.aml-card-img.back {
     opacity: 1;
 }
@@ -74,4 +94,36 @@ aml-card {
 
 .aml-rotate.aml-card-img.back.on {
     opacity: 0;
+}
+
+@keyframes fade-kf {
+    0% {opacity: 0; transform: rotateY(0deg)}
+    40% {opacity: 0; }
+    50% {opacity: 1; transform: rotateY(-90deg)}
+    100% {opacity: 1; transform: rotateY(0deg) }
+}
+
+@keyframes fade-kf2 {
+    0% {opacity: 1; transform: rotateY(0deg)}
+    40% {opacity: 1; }
+    50% {opacity: 0; transform: rotateY(90deg)}
+    100% {opacity: 0; transform: rotateY(0deg)}
+}
+
+@-webkit-keyframes fade-kf {
+    0% {opacity: 0; -webkit-transform: rotateY(0deg)}
+    40% {opacity: 0; }
+    50% {opacity: 1; -webkit-transform: rotateY(-90deg)}
+    100% {opacity: 1; -webkit-transform: rotateY(0deg) }
+}
+
+@-webkit-keyframes fade-kf2 {
+    0% {opacity: 1; -webkit-transform: rotateY(0deg)}
+    40% {opacity: 1; }
+    50% {opacity: 0; -webkit-transform: rotateY(90deg)}
+    100% {opacity: 0; -webkit-transform: rotateY(0deg)}
+}
+
+.aml-card-img {
+    position: absolute;
 }
