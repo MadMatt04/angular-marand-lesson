@@ -285,7 +285,7 @@
             next: "/angular-bind"
         });
 
-        $scope.slideTitle = "JQuery Implementation";
+        $scope.slideTitle = "JQuery Implementation (before AngularJS)";
         $scope.codeUrl = "js/examples/jquery-ex.js";
     }]);
 
