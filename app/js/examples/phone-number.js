@@ -1,7 +1,7 @@
 amlApp.directive('phoneNumber', [function() {
     return {
         restrict: 'E',
-        templateUrl: '/views/directives/phone-number.html',
+        templateUrl: 'views/directives/phone-number.html',
         transclude: true,
 
         scope: {

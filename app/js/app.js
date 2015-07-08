@@ -164,7 +164,7 @@
     amlApp.directive('phoneNumber', [function() {
         return {
             restrict: 'E',
-            templateUrl: '/views/directives/phone-number.html',
+            templateUrl: 'views/directives/phone-number.html',
             transclude: true,
 
             scope: {
@@ -296,7 +296,7 @@
         });
 
         $scope.slideTitle = "The Angular Way (Declarative Bindings)";
-        $scope.codeUrl = "/views/examples/angular-binding.html";
+        $scope.codeUrl = "views/examples/angular-binding.html";
     }]);
 
     amlApp.controller("AmlHelloTemplateController", ["$scope", function($scope) {

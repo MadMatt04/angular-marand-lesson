@@ -62,7 +62,7 @@
     cardsApp.directive("amlCard", [function() {
         return {
             restrict: 'E',
-            templateUrl: '/views/directives/aml-card.html',
+            templateUrl: 'views/directives/aml-card.html',
 
             scope: {
                 card: '=',
