@@ -255,7 +255,7 @@
 
         $scope.img = "img/sp-app.jpg";
         $scope.imgAlt = "Single-page Application";
-        $scope.slideTitle = "Single-page Application Image";
+        $scope.slideTitle = "Single-page Application";
         $scope.imgCredit = "MSDN";
 
     }]);
